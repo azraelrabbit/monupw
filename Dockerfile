@@ -11,7 +11,7 @@ RUN  sudo apt-get update
 #Install mono
 RUN apt-get update && \
         apt-get install -y --force-yes mono-devel mono-complete referenceassemblies-pcl && \
-        apt-get install -y --force-yes openssh-server
+        apt-get install -y --force-yes openssh-server curl
 
 
 RUN sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
