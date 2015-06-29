@@ -10,10 +10,11 @@ RUN  sudo apt-get update
 
 #Install mono
 RUN apt-get update && \
-        apt-get install -y --force-yes mono-devel mono-complete referenceassemblies-pcl
+        apt-get install -y --force-yes mono-devel mono-complete referenceassemblies-pcl && \
+        apt-get install -y --force-yes openssh-server
 
 
-#RUN sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+RUN sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 RUN mkdir -p /var/run/sshd && \
       echo "root:monups" |chpasswd  && \
       useradd admin  &&  echo "admin:monupw" | chpasswd  &&  echo "admin   ALL=(ALL)       ALL" >> /etc/sudoers 
