@@ -13,7 +13,7 @@ RUN apt-get update
 RUN apt-get install -y --force-yes mono-devel mono-complete referenceassemblies-pcl
 
 
-RUN sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+#RUN sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 RUN mkdir -p /var/run/sshd
 RUN echo "root:monups" |chpasswd
 RUN useradd admin  &&  echo "admin:monupw" | chpasswd  &&  echo "admin   ALL=(ALL)       ALL" >> /etc/sudoers 
