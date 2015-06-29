@@ -19,7 +19,7 @@ RUN echo "root:monups" |chpasswd
 RUN useradd admin  &&  echo "admin:monupw" | chpasswd  &&  echo "admin   ALL=(ALL)       ALL" >> /etc/sudoers 
 
 # Fix PAM login issue with sshd
-RUN sed -i 's/session    required     pam_loginuid.so/#session    required     pam_loginuid.so/g' /etc/pam.d/sshd
+# RUN sed -i 's/session    required     pam_loginuid.so/#session    required     pam_loginuid.so/g' /etc/pam.d/sshd
 
 #set the PATH for mono-opt
 ENV PATH $PATH:/opt/mono/bin
