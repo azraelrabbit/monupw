@@ -9,14 +9,14 @@ RUN sh -c "echo 'deb http://download.mono-project.com/repo/debian wheezy main' |
 RUN  sudo apt-get update 
 
 #Install mono
-RUN apt-get update
-RUN apt-get install -y --force-yes mono-devel mono-complete referenceassemblies-pcl
+RUN apt-get update && \
+        apt-get install -y --force-yes mono-devel mono-complete referenceassemblies-pcl
 
 
 #RUN sudo sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
-RUN mkdir -p /var/run/sshd
-RUN echo "root:monups" |chpasswd
-RUN useradd admin  &&  echo "admin:monupw" | chpasswd  &&  echo "admin   ALL=(ALL)       ALL" >> /etc/sudoers 
+RUN mkdir -p /var/run/sshd && \
+      echo "root:monups" |chpasswd  && \
+      useradd admin  &&  echo "admin:monupw" | chpasswd  &&  echo "admin   ALL=(ALL)       ALL" >> /etc/sudoers 
 
 # Fix PAM login issue with sshd
 RUN sed -i 's/session    required     pam_loginuid.so/#session    required     pam_loginuid.so/g' /etc/pam.d/sshd
@@ -29,15 +29,16 @@ ENV PKG_CONFIG_PATH $PKG_CONFIG_PATH:/opt/mono/lib/pkgconfig
 # install mono web server Jexus
 RUN curl jexus.org/5.6.3/install|sh
 
+VOLUME ["/data"]
 
 # open port for ssh 
-EXPOSE 22
+EXPOSE 22  8081  80
 
 # open port for jexus web server
-EXPOSE 8081
+#EXPOSE 8081
 
 # open port for default http 80
-EXPOSE 80
+#EXPOSE 80
 
 
 #&& /usr/jexus/jws start
