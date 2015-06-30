@@ -31,9 +31,10 @@ ENV PKG_CONFIG_PATH $PKG_CONFIG_PATH:/opt/mono/lib/pkgconfig
 RUN cd /tmp && curl http://www.daqiao.io/5.6.4/install | sh
 
 RUN mkdir /data && touch /data/x && mkdir /data/jwslog && mkdir /data/siteconf && mkdir /data/wwwroot
-RUN cp /usr/jexus/siteconf/default /data/siteconf/
-RUN cp /usr/jexus/jws.conf /usr/jexus/jws.conf.backup
-RUN sed -i 's/SiteLogDir=log/SiteLogDir=/data/jwslog/g' /usr/jesus/jws.conf && sed -i 's/SiteConfigDir=siteconf/SiteConfigDir=/data/siteconf/g' /usr/jexus/jws.conf
+#RUN cp /usr/jexus/siteconf/default /data/siteconf/
+#RUN cp /usr/jexus/jws.conf /usr/jexus/jws.conf.backup
+#RUN sed -i 's/SiteLogDir=log/SiteLogDir=/data/jwslog/g' /usr/jesus/jws.conf && sed -i 's/SiteConfigDir=siteconf/SiteConfigDir=/data/siteconf/g' /usr/jexus/jws.conf
+RUN sed -i 's/root=/ /var/www/default/root=/ /data/g'
 
 VOLUME ["/data"]
 
