@@ -6,7 +6,7 @@ MAINTAINER azraelrabbit <azraelrabbit@gmail.com>
 #add mono  official source
 RUN  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 RUN sh -c "echo 'deb http://download.mono-project.com/repo/debian wheezy main' | sudo tee /etc/apt/sources.list.d/mono-xamarin.list"
-RUN  sudo apt-get update 
+#RUN  sudo apt-get update 
 
 #Install mono
 RUN apt-get update && \
@@ -30,7 +30,8 @@ ENV PKG_CONFIG_PATH $PKG_CONFIG_PATH:/opt/mono/lib/pkgconfig
 # install mono web server Jexus
 RUN cd /tmp && curl http://www.daqiao.io/5.6.4/install | sh
 
-RUN mkdir /data && touch /data/x && mkdir /data/jwslog && mkdir /data/siteconf && mkdir /data/wwwroot
+RUN mkdir /data 
+#&& touch /data/x && mkdir /data/jwslog && mkdir /data/siteconf && mkdir /data/wwwroot
 #RUN cp /usr/jexus/siteconf/default /data/siteconf/
 #RUN cp /usr/jexus/jws.conf /usr/jexus/jws.conf.backup
 #RUN sed -i 's/SiteLogDir=log/SiteLogDir=/data/jwslog/g' /usr/jesus/jws.conf && sed -i 's/SiteConfigDir=siteconf/SiteConfigDir=/data/siteconf/g' /usr/jexus/jws.conf
